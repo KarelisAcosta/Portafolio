@@ -1,0 +1,12 @@
+/* semantic color variables for this project */
+:root {
+  --color-first: pink;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
