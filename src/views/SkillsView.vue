@@ -5,7 +5,7 @@
         v-for="(card, index) in cards"
         :key="index"
         class="card"
-        @mouseenter="flipCard(index)"
+        @mouseleave="flipCard(index)"
       >
         <div class="card-inner" :class="{ 'is-flipped': flippedCards[index] }">
           <!-- Front of the card -->
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 // Array of card data for the back side of each card
 const cards = ref([
@@ -63,6 +63,17 @@ const flippedCards = ref(Array(cards.value.length).fill(false));
 const flipCard = (index) => {
   flippedCards.value[index] = !flippedCards.value[index];
 };
+
+// Automatically flip cards in sequence after 2 seconds
+onMounted(() => {
+  setTimeout(() => {
+    cards.value.forEach((_, index) => {
+      setTimeout(() => {
+        flipCard(index);
+      }, 200 * index); // Delay each card by 500ms after the previous one
+    });
+  }, 1000); // Start flipping after 2 seconds
+});
 </script>
 
 <style scoped>
