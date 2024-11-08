@@ -9,4 +9,20 @@ import { RouterView } from "vue-router";
   <footer></footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+header,
+footer {
+  background-color: black;
+  height: 50px;
+  width: 100%;
+  position: absolute;
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+</style>

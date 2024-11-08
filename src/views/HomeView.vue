@@ -1,5 +1,18 @@
-<script setup></script>
+<script setup>
+import NavigationBlock from "@/components/Home/NavigationBlock.vue";
+</script>
 
-<template></template>
+<template>
+  <section>
+    <NavigationBlock />
+  </section>
+</template>
 
-<style scoped></style>
+<style scoped>
+section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

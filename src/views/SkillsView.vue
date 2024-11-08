@@ -36,22 +36,22 @@ import { ref, onMounted } from "vue";
 const cards = ref([
   {
     icon: "/img/skillcards_01.png", // Icon for card 1
-    title: "Skill 1",
+    title: " Ilustración",
     description: "Description for skill 1.",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 2
-    title: "Skill 2",
+    title: "Animación",
     description: "Description for skill 2.",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 3
-    title: "Skill 3",
+    title: "Web",
     description: "Description for skill 3.",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 4
-    title: "Skill 4",
+    title: "Editorial",
     description: "Description for skill 4.",
   },
 ]);
@@ -137,6 +137,7 @@ onMounted(() => {
   transform: rotateY(180deg);
   padding: 20px;
   text-align: center;
+  flex-direction: column;
 }
 
 /* Front image */
@@ -148,8 +149,8 @@ onMounted(() => {
 
 /* Back icon */
 .card-icon {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   margin-bottom: 10px;
 }
 
