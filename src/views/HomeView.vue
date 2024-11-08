@@ -43,7 +43,7 @@ const cards = ref([
 const getCardStyle = (card) => ({
   left: `${card.position.x}px`,
   top: `${card.position.y}px`,
-  transform: "translate(0, 0)", // Ensures proper stacking context for animations
+  transform: "translate(0, 0)",
 });
 
 const handleCardClick = (link) => {
@@ -69,10 +69,5 @@ const handleCardClick = (link) => {
 .card3 {
   width: 100px;
   height: 100px;
-  animation: float 3.5s ease-in-out infinite;
-}
-
-.card1 {
-  animation: float 2.5s ease-in-out infinite;
 }
 </style>

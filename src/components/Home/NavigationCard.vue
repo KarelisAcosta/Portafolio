@@ -2,6 +2,7 @@
   <div
     class="navigation-card"
     :class="[`card${index + 1}`]"
+    :style="{ '--delay': `${index * 0.7}s` }"
     @click="$emit('cardClick', link)"
   >
     <img :src="image" :alt="title" class="card-image" />
@@ -44,11 +45,15 @@ defineEmits(["cardClick"]);
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  animation: float 3s ease-in-out infinite;
   padding: 10px;
   pointer-events: auto;
   position: absolute;
   cursor: pointer;
+  animation: float 3.5s ease-in-out infinite;
+  animation-delay: var(
+    --delay,
+    0s
+  ); // Uses the CSS variable with a fallback of 0s
 }
 
 .card-image {
