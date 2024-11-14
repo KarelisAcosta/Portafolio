@@ -18,6 +18,9 @@
 <script setup>
 import { ref } from "vue";
 import NavigationBlock from "@/components/Home/NavigationCard.vue";
+import { database } from "@/lib/database";
+
+console.log(database);
 
 const cards = ref([
   {
