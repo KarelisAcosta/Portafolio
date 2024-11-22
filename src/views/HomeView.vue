@@ -19,20 +19,22 @@
 import { ref } from "vue";
 import NavigationBlock from "@/components/Home/NavigationCard.vue";
 import { database } from "@/lib/database";
+import { useRouter } from "vue-router"; // Importar useRouter
 
+const router = useRouter(); // Inicializar router
 console.log(database);
 
 const cards = ref([
   {
     image: "/img/cuadrado.png",
     title: "About me",
-    link: "1",
+    link: "/about",
     position: { x: 100, y: 100 },
   },
   {
     image: "/img/cuadrado.png",
-    title: "Skill 2",
-    link: "2",
+    title: "Skills",
+    link: "/skills",
     position: { x: 1000, y: 400 },
   },
   {
@@ -52,6 +54,7 @@ const getCardStyle = (card) => ({
 const handleCardClick = (link) => {
   if (!link) return;
   console.log(link);
+  router.push(link); // Usar Vue Router para cambiar de ruta
   // Add navigation logic here
 };
 </script>
@@ -59,9 +62,9 @@ const handleCardClick = (link) => {
 <style lang="scss" scoped>
 .home-container {
   position: relative;
-  height: 100vh;
+
   width: 100%;
-  overflow: hidden;
+  height: 100%;
 }
 
 .content {

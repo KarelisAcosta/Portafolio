@@ -83,7 +83,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 0 20px; /* Add horizontal padding */
-  min-height: 100vh; /* Center vertically */
+  height: 100vh;
 }
 
 /* Container for the grid */
