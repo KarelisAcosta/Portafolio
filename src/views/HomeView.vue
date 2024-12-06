@@ -8,10 +8,6 @@
       :index="index"
       @cardClick="handleCardClick"
     />
-
-    <div class="content-layer">
-      <!-- Other content goes here -->
-    </div>
   </section>
 </template>
 
@@ -38,10 +34,16 @@ const cards = ref([
     position: { x: 1000, y: 400 },
   },
   {
-    image: "/img/cuadrado.png",
+    image: "/img/Recurso26.png",
     title: "",
     link: "",
-    position: { x: 400, y: 400 },
+    position: { x: 200, y: 450 },
+  },
+  {
+    image: "/img/Recurso25.png",
+    title: "",
+    link: "",
+    position: { x: 1200, y: 100 },
   },
 ]);
 
@@ -62,9 +64,21 @@ const handleCardClick = (link) => {
 <style lang="scss" scoped>
 .home-container {
   position: relative;
-
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("/img/fondo.png");
+  background-size: cover;
+  background-position: top;
+}
+
+.fondo {
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 }
 
 .content {
@@ -73,6 +87,10 @@ const handleCardClick = (link) => {
 }
 
 .card3 {
+  width: 100px;
+  height: 100px;
+}
+.card4 {
   width: 100px;
   height: 100px;
 }

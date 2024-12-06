@@ -1,14 +1,15 @@
 <template>
   <div class="card">
-    <img :src="imageUrl" alt="Card Image" class="card-image" />
+    <img :src="project.img1" alt="Card Image" class="card-image" />
+    <img src="/img/marco1.png" class="marco" alt="" />
   </div>
 </template>
 
 <script setup>
 // Prop para recibir la URL de la imagen
 defineProps({
-  imageUrl: {
-    type: String,
+  project: {
+    type: Object,
     required: true,
   },
 });
@@ -19,7 +20,7 @@ defineProps({
 .card {
   width: 200px;
   height: 300px;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -30,8 +31,14 @@ defineProps({
 
 /* Image inside the card */
 .card-image {
+  width: 92%;
+  height: 92%;
+  object-fit: cover;
+}
+
+.marco {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image fills the card without distortion */
+  position: absolute;
 }
 </style>

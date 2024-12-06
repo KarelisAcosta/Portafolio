@@ -39,6 +39,7 @@ defineEmits(["cardClick"]);
   height: 200px;
   background-color: #f0f0f0;
   border-radius: 8px;
+  border: 5px solid black;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15), 0px 6px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;

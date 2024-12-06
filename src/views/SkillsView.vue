@@ -6,6 +6,7 @@
         :key="index"
         class="card"
         @mouseleave="flipCard(index)"
+        @click="handleClick(card)"
       >
         <div class="card-inner" :class="{ 'is-flipped': flippedCards[index] }">
           <!-- Front of the card -->
@@ -19,9 +20,11 @@
 
           <!-- Back of the card -->
           <div class="card-back">
-            <img :src="card.icon" alt="Icon" class="card-icon" />
-            <h3>{{ card.title }}</h3>
-            <p>{{ card.description }}</p>
+            <img
+              :src="card.backImage"
+              alt="Card Back"
+              class="card-back-image"
+            />
           </div>
         </div>
       </div>
@@ -31,6 +34,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 // Array of card data for the back side of each card
 const cards = ref([
@@ -38,21 +43,29 @@ const cards = ref([
     icon: "/img/skillcards_01.png", // Icon for card 1
     title: " Ilustración",
     description: "Description for skill 1.",
+    backImage: "/img/skillcard_1.png", // Back image for card 1
+    category: "ilustracion",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 2
     title: "Animación",
     description: "Description for skill 2.",
+    backImage: "/img/skillcard_2.png", // Back image for card 2
+    category: "3d",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 3
     title: "Web",
     description: "Description for skill 3.",
+    backImage: "/img/skillcard_3.png", // Back image for card 3
+    category: "web",
   },
   {
     icon: "/img/skillcards_01.png", // Icon for card 4
     title: "Editorial",
     description: "Description for skill 4.",
+    backImage: "/img/skillcard_4.png", // Back image for card 4
+    category: "editorial",
   },
 ]);
 
@@ -62,6 +75,15 @@ const flippedCards = ref(Array(cards.value.length).fill(false));
 // Function to toggle flip state
 const flipCard = (index) => {
   flippedCards.value[index] = !flippedCards.value[index];
+};
+
+const handleClick = (card) => {
+  // Check if the card has a category and navigate to the project page
+  if (card.category) {
+    router.push({ name: "projects", params: { category: card.category } });
+  } else {
+    console.log("No category for this card");
+  }
 };
 
 // Automatically flip cards in sequence after 2 seconds
@@ -98,6 +120,7 @@ onMounted(() => {
   perspective: 1000px;
   width: 200px;
   height: 300px;
+  cursor: pointer;
 }
 
 .card-inner {
@@ -132,12 +155,17 @@ onMounted(() => {
 }
 
 .card-back {
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: #f8f9fa; /* Optional: fallback background */
   transform: rotateY(180deg);
-  padding: 20px;
-  text-align: center;
-  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-back-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire area */
 }
 
 /* Front image */
@@ -145,23 +173,5 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* Back icon */
-.card-icon {
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
-}
-
-/* Card title and description */
-.card-back h3 {
-  font-size: 1.2em;
-  margin: 10px 0;
-}
-
-.card-back p {
-  font-size: 0.9em;
-  color: #666;
 }
 </style>

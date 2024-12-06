@@ -1,31 +1,45 @@
 <template>
   <div class="background-container" :style="containerStyles">
     <h1 class="title">{{ title }}</h1>
+    <img :src="`/img/${category}.png`" alt="" />
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 // Props for customization
 const props = defineProps({
   title: {
     type: String,
-    default: "Ilustración",
+    default: "",
   },
-  backgroundImage: {
+  currentSection: {
     type: String,
-    default: "", // Default to no background image
+    default: "", // Sección actual (puede ser 'ilustracion', 'web', etc.)
   },
+  category: {
+    type: String,
+    default: "",
+  },
+});
+
+// Ruta de las imágenes
+const images = {
+  ilustracion: "/img/ilustracion.png",
+  web: "/img/web.png",
+  modelado: "/img/3d.png",
+  editorial: "/img/editorial.png",
+};
+
+// Determina la imagen según la sección actual
+const backgroundImage = computed(() => {
+  return images[props.currentSection] || "/img/default.png"; // Default image if no section matches
 });
 
 // Dynamic styles for the container
 const containerStyles = computed(() => ({
-  width: props.width,
-  height: props.height,
-  backgroundImage: props.backgroundImage
-    ? `url(${props.backgroundImage})`
-    : "none",
+  backgroundImage: `url(${backgroundImage.value})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   display: "flex",
@@ -36,26 +50,16 @@ const containerStyles = computed(() => ({
 }));
 </script>
 
-<style scoped>
-/* Import custom font */
-@import url("https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&display=swap");
-
+<style lang="scss" scoped>
 /* Container styles */
 .background-container {
   border-radius: 8px; /* Editable */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Editable */
-  width: 1000px;
-  height: 200px;
-}
+  height: 300px; /* Ajusta según sea necesario */
 
-/* Title styles */
-.title {
-  position: absolute;
-  color: white;
-  font-family: "Averia Libre", cursive;
-  font-size: 1.5em; /* Editable */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add contrast */
-  text-align: center;
-  margin: 0;
+  img {
+    height: 100%;
+    object-fit: contain;
+  }
 }
 </style>
