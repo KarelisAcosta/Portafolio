@@ -177,4 +177,28 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
 }
+
+/* Responsive styles */
+
+/* 800px layout: 2 cards per row */
+@media (max-width: 800px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+}
+
+/* 500px layout: single column with flex-wrap */
+@media (max-width: 500px) {
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 200px; /* Keep the fixed width */
+    height: 300px; /* Keep the fixed height */
+    margin-bottom: 20px; /* Add margin between cards */
+  }
+}
 </style>
