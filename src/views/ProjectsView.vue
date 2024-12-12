@@ -45,6 +45,9 @@ onMounted(async () => {
   height: 100vh; /* Altura completa de la vista */
   padding: 20px;
   box-sizing: border-box; /* Incluye el padding en las dimensiones */
+  background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
+  background-size: cover; /* Para cubrir todo el contenedor */
+  background-position: center; /* Centrar la imagen */
 }
 
 /* Estilos para la sección del título */
@@ -52,6 +55,7 @@ onMounted(async () => {
   margin-top: 60px;
   display: flex;
   justify-content: center;
+  border-radius: 10px;
 }
 
 /* Estilos para la sección de las tarjetas */

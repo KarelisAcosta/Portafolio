@@ -53,7 +53,7 @@ const containerStyles = computed(() => ({
 <style lang="scss" scoped>
 /* Container styles */
 .background-container {
-  border-radius: 8px; /* Editable */
+  border-radius: 50px; /* Editable */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Editable */
   height: 300px; /* Ajusta según sea necesario */
 

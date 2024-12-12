@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <img :src="project.img1" alt="Card Image" class="card-image" />
-    <img src="/img/marco1.png" class="marco" alt="" />
+    <img :src="`/img/marco-${project.categoria}.png`" class="marco" alt="" />
   </div>
 </template>
 

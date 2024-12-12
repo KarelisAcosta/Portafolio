@@ -22,16 +22,16 @@ console.log(database);
 
 const cards = ref([
   {
-    image: "/img/cuadrado.png",
+    image: "/img/nina.png",
     title: "About me",
     link: "/about",
-    position: { x: 100, y: 100 },
+    position: { x: 150, y: 100 },
   },
   {
-    image: "/img/cuadrado.png",
+    image: "/img/skillfoto.png",
     title: "Skills",
     link: "/skills",
-    position: { x: 1000, y: 400 },
+    position: { x: 1170, y: 400 },
   },
   {
     image: "/img/Recurso26.png",

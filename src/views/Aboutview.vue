@@ -34,18 +34,19 @@
 
 <script setup>
 const profileData = {
-  image: "/img/skillcards_01.png",
+  image: "/img/muñeca.png",
   name: "Karelis Acosta",
-  description: "Una descripción breve sobre el perfil",
+  description:
+    "Soy una persona curiosa y apasionada por el aprendizaje. Siempre estoy explorando nuevas ideas, herramientas y tendencias, lo que me permite estar dispuesta a intentar cosas nuevas. Mi enfoque no solo se limita a la creación visual, sino también a compartir y expandir mis conocimientos con otros.",
   skills: [
-    "/img/logo1.png",
-    "/img/logo2.png",
-    "/img/logo3.png",
-    "/img/logo4.png",
-    "/img/logo5.png",
-    "/img/logo6.png",
-    "/img/logo7.png",
-    "/img/logo8.png",
+    "/img/photoshop.png",
+    "/img/ilustraitor.png",
+    "/img/indesing.png",
+    "/img/premiere.png",
+    "/img/affter.png",
+    "/img/blender.png",
+    "/img/visual.png",
+    "/img/Audition.png",
   ],
 };
 </script>
@@ -56,6 +57,9 @@ const profileData = {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
+  background-size: cover; /* Para cubrir todo el contenedor */
+  background-position: center; /* Centrar la imagen */
 }
 
 /* Estilo general del contenedor */
@@ -65,8 +69,9 @@ const profileData = {
   gap: 20px;
   align-items: start;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
+  background-color: white;
+  border: 10px solid #5b63a3;
+  border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 900px;
   margin: 0 auto;
@@ -78,6 +83,7 @@ const profileData = {
   height: auto;
   border-radius: 10px;
   object-fit: cover;
+  transform: translateX(20px);
 }
 
 /* Estilo para la columna derecha (información) */
@@ -95,9 +101,11 @@ const profileData = {
 }
 
 .profile-description {
-  font-size: 1em;
+  font-size: 1.2em;
   color: #555;
-  margin: 0;
+  margin: 20px 0; /* Márgenes superior e inferior */
+  padding: 0px 30px; /* Añadir un poco de relleno a los lados si lo deseas */
+  text-align: center;
 }
 
 .skills-title {
@@ -114,8 +122,63 @@ const profileData = {
 }
 
 .skill-logo img {
-  width: 100%;
+  width: 50px;
+  height: 50px;
   height: auto;
   object-fit: contain;
+}
+
+/* Media Query para dispositivos con ancho de 00px */
+
+@media screen and (max-width: 800px) {
+  /* Estilo para la columna izquierda (imagen) */
+  .profile-image img {
+    width: 150%; /* Imagen más grande */
+    height: 150%; /* Tamaño de la imagen */
+    transform: translateX(-30px); /* Eliminar la transformación de la imagen */
+    top: 30px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .profile-card {
+      grid-template-columns: 1fr; /* Una sola columna */
+      max-width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+      padding: 10px;
+    }
+
+    /* Estilo para la columna izquierda (imagen) */
+    .profile-image img {
+      width: 60%; /* Imagen más grande */
+      height: 60%; /* Tamaño de la imagen */
+      transform: translateX(85px); /* Eliminar la transformación de la imagen */
+    }
+
+    /* Estilo para la columna derecha (información) */
+    .profile-info {
+      gap: 10px;
+    }
+
+    .profile-name {
+      font-size: 1.5em; /* Reducir el tamaño */
+    }
+
+    .profile-description {
+      font-size: 1em; /* Reducir tamaño */
+      margin: 10px 0;
+    }
+
+    .skills-title {
+      font-size: 1.2em; /* Reducir tamaño */
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(4, 1fr); /* Reducir el número de columnas */
+    }
+
+    .skill-logo img {
+      width: 40px;
+      height: 40px; /* Reducir el tamaño de los logos */
+    }
+  }
 }
 </style>

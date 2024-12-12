@@ -106,6 +106,9 @@ onMounted(() => {
   justify-content: center;
   padding: 0 20px; /* Add horizontal padding */
   height: 100vh;
+  background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
+  background-size: cover; /* Para cubrir todo el contenedor */
+  background-position: center; /* Centrar la imagen */
 }
 
 /* Container for the grid */
