@@ -109,6 +109,7 @@ onMounted(() => {
   background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
   background-size: cover; /* Para cubrir todo el contenedor */
   background-position: center; /* Centrar la imagen */
+  background-attachment: fixed; /* Fija la imagen cuando se haga scroll */
 }
 
 /* Container for the grid */

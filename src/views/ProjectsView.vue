@@ -27,8 +27,12 @@ onMounted(async () => {
     <div class="cards-section">
       <ProjectCard
         v-for="project in projects"
-        :key="project.name"
+        :key="project.nombre"
         :project="project"
+        @click.native="
+          $router.push({ name: 'project', params: { name: project.nombre } })
+        "
+      />
       />
     </div>
   </section>
@@ -48,6 +52,7 @@ onMounted(async () => {
   background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
   background-size: cover; /* Para cubrir todo el contenedor */
   background-position: center; /* Centrar la imagen */
+  background-attachment: fixed; /* Fija la imagen cuando se haga scroll */
 }
 
 /* Estilos para la sección del título */
@@ -61,7 +66,6 @@ onMounted(async () => {
 /* Estilos para la sección de las tarjetas */
 .cards-section {
   display: flex;
-
   gap: 20px; /* Espaciado entre tarjetas */
   flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas si es necesario */
   justify-content: center;
