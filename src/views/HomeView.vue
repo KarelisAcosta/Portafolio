@@ -24,7 +24,7 @@ const cards = ref([
   {
     image: "/img/nina.png",
     title: "About me",
-    link: "/about",
+    link: "/aboutme",
     position: { x: 150, y: 100 },
   },
   {
