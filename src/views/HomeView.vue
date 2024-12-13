@@ -94,4 +94,26 @@ const handleCardClick = (link) => {
   width: 100px;
   height: 100px;
 }
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navigation-card:nth-child(1) {
+    left: 10px !important;
+    top: 50px !important;
+  }
+  .navigation-card:nth-child(2) {
+    left: 250px !important;
+    top: 500px !important;
+  }
+  .navigation-card:nth-child(3) {
+    display: none;
+    left: 0px !important;
+    top: 0px !important;
+  }
+  .navigation-card:nth-child(4) {
+    display: none;
+    left: 0px !important;
+    top: 0px !important;
+  }
+}
 </style>

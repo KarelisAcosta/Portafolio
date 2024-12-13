@@ -14,7 +14,9 @@ onMounted(() => {
 
 <template>
   <div v-if="showAnimation" class="animation-container">
-    <div class="card"></div>
+    <div class="card">
+      <img src="/public/img/skillcards_04.png" alt="" />
+    </div>
   </div>
 
   <!-- Contenido principal -->
@@ -39,15 +41,15 @@ onMounted(() => {
   animation: fadeout 800ms linear 2200ms forwards;
 }
 
-.card {
+.card img {
   width: 300px;
   height: 400px;
   background-color: #fff;
-  border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transform-origin: center;
   animation: rotateCard 3s forwards;
+  background-image: url(/img/skillcard_1.png);
 }
 
 /* Animación de rotación de la tarjeta en el eje X (horizontal) */

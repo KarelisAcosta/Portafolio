@@ -27,6 +27,7 @@ defineProps({
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0; /* Fallback color if no image */
+  cursor: pointer;
 }
 
 /* Image inside the card */

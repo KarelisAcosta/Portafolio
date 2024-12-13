@@ -46,13 +46,14 @@ onMounted(async () => {
   align-items: center;
   justify-content: flex-start; /* Título en la parte superior */
   gap: 40px; /* Espaciado entre el título y las tarjetas */
-  height: 100vh; /* Altura completa de la vista */
+
   padding: 20px;
   box-sizing: border-box; /* Incluye el padding en las dimensiones */
   background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
   background-size: cover; /* Para cubrir todo el contenedor */
   background-position: center; /* Centrar la imagen */
   background-attachment: fixed; /* Fija la imagen cuando se haga scroll */
+  background-repeat: repeat-y;
 }
 
 /* Estilos para la sección del título */

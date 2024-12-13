@@ -1,10 +1,21 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { database } from "@/lib/database";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const project = ref(null);
+
+// Computed property for images
+const images = computed(() => {
+  if (!project.value) return [];
+  return [
+    project.value.img1,
+    project.value.img2,
+    project.value.img3,
+    project.value.img4,
+  ].filter((img) => img);
+});
 
 onMounted(async () => {
   let db = await database;
@@ -20,24 +31,9 @@ onMounted(async () => {
 
     <div class="media-section">
       <!-- Imágenes del proyecto -->
-      <div
-        v-if="project.img1 || project.img2 || project.img3 || project.img4"
-        class="image-gallery"
-      >
-        <div
-          v-for="(img, index) in [
-            project.img1,
-            project.img2,
-            project.img3,
-            project.img4,
-          ]"
-          :key="index"
-        >
-          <img
-            v-if="img"
-            :src="img.startsWith('/') ? img : '/img/' + img"
-            alt="Project Image"
-          />
+      <div v-if="images.length" class="image-gallery">
+        <div v-for="(img, index) in images" :key="index">
+          <img :src="img" alt="Project Image" />
         </div>
       </div>
 
@@ -50,9 +46,7 @@ onMounted(async () => {
 
     <!-- Link externo -->
     <div v-if="project.link_externo" class="external-link">
-      <a :href="project.link_externo" target="_blank" rel="noopener noreferrer"
-        >Visit External Link</a
-      >
+      <a :href="project.link_externo" target="_blank">Visit External Link</a>
     </div>
   </section>
   <p v-else>Loading project details...</p>
@@ -61,13 +55,17 @@ onMounted(async () => {
 <style scoped>
 .project-container {
   padding: 20px;
-  max-width: 100%;
+  width: 100%;
+  min-height: 100dvh;
+  min-height: 100vh;
   margin: auto;
   text-align: center;
   background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
   background-size: cover; /* Para cubrir todo el contenedor */
   background-position: center; /* Centrar la imagen */
   background-repeat: no-repeat; /* Evitar repetición de la imagen */
+  align-items: center;
+  justify-content: center;
 }
 
 .project-title {
@@ -86,11 +84,24 @@ onMounted(async () => {
   gap: 20px;
 }
 
+.image-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 .image-gallery img {
-  max-width: 100%;
-  height: auto;
+  width: auto;
+  height: 500px;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.video-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-gallery video {
