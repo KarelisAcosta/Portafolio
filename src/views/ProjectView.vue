@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { database } from "@/lib/database";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router"; // Importa useRouter
 
 const route = useRoute();
+const router = useRouter(); // Usar useRouter para tener acceso al objeto router
 const project = ref(null);
 
 // Computed property for images
@@ -32,6 +33,11 @@ onMounted(async () => {
   project.value = db.find((p) => p.nombre === route.params.name);
   console.log(project.value);
 });
+
+// Función para regresar a la página anterior
+const goBack = () => {
+  router.go(-1); // O también puedes usar router.back();
+};
 </script>
 
 <template>
@@ -64,6 +70,9 @@ onMounted(async () => {
         Visit External Link
       </a>
     </div>
+
+    <!-- Botón para regresar -->
+    <button @click="goBack" class="back-button">Back to Projects</button>
   </section>
   <p v-else>Loading project details...</p>
 </template>
@@ -82,6 +91,7 @@ onMounted(async () => {
   background-repeat: no-repeat; /* Evitar repetición de la imagen */
   align-items: center;
   justify-content: center;
+  position: relative; /* Necesario para posicionar los botones dentro del contenedor */
 }
 
 .project-title {
@@ -137,5 +147,38 @@ onMounted(async () => {
 .link-button:hover {
   transform: scale(1.05);
   text-decoration: none;
+}
+
+/* Contenedor para los botones de regresar y link externo */
+.buttons-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px; /* Espacio entre los botones */
+}
+
+/* Estilos para el botón de regresar */
+.back-button {
+  left: 560px;
+  bottom: 50px;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+/* Estilos para el botón de link externo */
+.link-button {
+  background-color: #5ba6a3;
 }
 </style>

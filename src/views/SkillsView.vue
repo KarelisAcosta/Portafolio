@@ -1,30 +1,39 @@
 <template>
-  <div class="card-grid-wrapper">
-    <div class="card-grid">
-      <div
-        v-for="(card, index) in cards"
-        :key="index"
-        class="card"
-        @mouseleave="flipCard(index)"
-        @click="handleClick(card)"
-      >
-        <div class="card-inner" :class="{ 'is-flipped': flippedCards[index] }">
-          <!-- Front of the card -->
-          <div class="card-front">
-            <img
-              :src="`/img/skillcards_0${index + 1}.png`"
-              alt="Card Front"
-              class="card-image"
-            />
-          </div>
+  <div class="skills-wrapper">
+    <!-- Botón de volver -->
+    <button class="back-button" @click="goBack">Back</button>
 
-          <!-- Back of the card -->
-          <div class="card-back">
-            <img
-              :src="card.backImage"
-              alt="Card Back"
-              class="card-back-image"
-            />
+    <!-- Contenedor de las tarjetas -->
+    <div class="card-grid-wrapper">
+      <div class="card-grid">
+        <div
+          v-for="(card, index) in cards"
+          :key="index"
+          class="card"
+          @mouseleave="flipCard(index)"
+          @click="handleClick(card)"
+        >
+          <div
+            class="card-inner"
+            :class="{ 'is-flipped': flippedCards[index] }"
+          >
+            <!-- Front of the card -->
+            <div class="card-front">
+              <img
+                :src="`/img/skillcards_0${index + 1}.png`"
+                alt="Card Front"
+                class="card-image"
+              />
+            </div>
+
+            <!-- Back of the card -->
+            <div class="card-back">
+              <img
+                :src="card.backImage"
+                alt="Card Back"
+                class="card-back-image"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +95,11 @@ const handleClick = (card) => {
   }
 };
 
+// Function to go back to the previous page
+const goBack = () => {
+  router.go(-1); // Navega hacia atrás
+};
+
 // Automatically flip cards in sequence after 2 seconds
 onMounted(() => {
   setTimeout(() => {
@@ -99,27 +113,37 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Wrapper to center grid vertically and add side padding */
-.card-grid-wrapper {
+/* Wrapper para centrar las tarjetas */
+.skills-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 20px; /* Add horizontal padding */
   height: 100vh;
-  background-image: url("/img/estrellas.png"); /* Ruta de la imagen */
-  background-size: cover; /* Para cubrir todo el contenedor */
-  background-position: center; /* Centrar la imagen */
-  background-attachment: fixed; /* Fija la imagen cuando se haga scroll */
+  padding: 0 20px;
+  background-image: url("/img/estrellas.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
 
-/* Container for the grid */
+/* Contenedor de las tarjetas */
+.card-grid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-/* Card styles */
+/* Estilos de las tarjetas */
 .card {
   perspective: 1000px;
   width: 200px;
@@ -139,7 +163,6 @@ onMounted(() => {
   transform: rotateY(180deg);
 }
 
-/* Front and back face styles */
 .card-front,
 .card-back {
   position: absolute;
@@ -150,8 +173,6 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-front {
@@ -159,36 +180,48 @@ onMounted(() => {
 }
 
 .card-back {
-  background-color: #f8f9fa; /* Optional: fallback background */
+  background-color: #f8f9fa;
   transform: rotateY(180deg);
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-back-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure the image covers the entire area */
-}
-
-/* Front image */
+.card-back-image,
 .card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Responsive styles */
+/* Estilos para el botón de volver */
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 10;
+}
 
-/* 800px layout: 2 cards per row */
+.back-button:hover {
+  background-color: #555;
+}
+
+/* Estilos responsive */
+
+/* 800px layout: 2 tarjetas por fila */
 @media (max-width: 800px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    grid-template-columns: repeat(2, 1fr); /* 2 tarjetas por fila */
   }
 }
 
-/* 500px layout: single column with flex-wrap */
+/* 500px layout: Una tarjeta por fila */
 @media (max-width: 500px) {
   .card-grid {
     display: flex;
@@ -197,9 +230,9 @@ onMounted(() => {
   }
 
   .card {
-    width: 200px; /* Keep the fixed width */
-    height: 300px; /* Keep the fixed height */
-    margin-bottom: 20px; /* Add margin between cards */
+    width: 200px; /* Mantiene el tamaño fijo */
+    height: 300px;
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
   }
 }
 </style>
