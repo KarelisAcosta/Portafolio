@@ -27,7 +27,6 @@ onMounted(async () => {
 <template>
   <section v-if="project" class="project-container">
     <h1 class="project-title">{{ project.nombre }}</h1>
-    <div class="project-category">Category: {{ project.categoria }}</div>
 
     <div class="media-section">
       <!-- Imágenes del proyecto -->
@@ -54,7 +53,7 @@ onMounted(async () => {
 
 <style scoped>
 .project-container {
-  padding: 20px;
+  padding: 30px;
   width: 100%;
   min-height: 100dvh;
   min-height: 100vh;
@@ -70,7 +69,8 @@ onMounted(async () => {
 
 .project-title {
   font-size: 2rem;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  font-size: 60px;
 }
 
 .project-category {
