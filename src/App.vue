@@ -15,7 +15,7 @@ onMounted(() => {
 <template>
   <div v-if="showAnimation" class="animation-container">
     <div class="card">
-      <img src="/public/img/skillcards_04.png" alt="" />
+      <img src="/public/img/keart.png" alt="" />
     </div>
   </div>
 

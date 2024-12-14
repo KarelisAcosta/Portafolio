@@ -17,6 +17,16 @@ const images = computed(() => {
   ].filter((img) => img);
 });
 
+// Computed property for category color
+const categoryColor = computed(() => {
+  if (!project.value) return "";
+  const colors = {
+    web: "#5BA6A3", // Color para "web"
+    editorial: "#AA81D0", // Color para "editorial"
+  };
+  return colors[project.value.categoria] || "#000"; // Default a negro si no hay categoría
+});
+
 onMounted(async () => {
   let db = await database;
   project.value = db.find((p) => p.nombre === route.params.name);
@@ -43,9 +53,16 @@ onMounted(async () => {
       </div>
     </div>
 
-    <!-- Link externo -->
+    <!-- Link externo como botón estilizado -->
     <div v-if="project.link_externo" class="external-link">
-      <a :href="project.link_externo" target="_blank">Visit External Link</a>
+      <a
+        :href="project.link_externo"
+        target="_blank"
+        class="link-button"
+        :style="{ backgroundColor: categoryColor }"
+      >
+        Visit External Link
+      </a>
     </div>
   </section>
   <p v-else>Loading project details...</p>
@@ -71,11 +88,6 @@ onMounted(async () => {
   font-size: 2rem;
   margin-bottom: 30px;
   font-size: 60px;
-}
-
-.project-category {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
 }
 
 .media-section {
@@ -110,15 +122,20 @@ onMounted(async () => {
   border-radius: 10px;
 }
 
-.external-link a {
+/* Botón estilizado para el enlace externo */
+.link-button {
   display: inline-block;
   margin-top: 20px;
+  padding: 10px 20px;
   font-size: 1rem;
-  color: #007bff;
+  color: #fff; /* Texto blanco */
   text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.external-link a:hover {
-  text-decoration: underline;
+.link-button:hover {
+  transform: scale(1.05);
+  text-decoration: none;
 }
 </style>
